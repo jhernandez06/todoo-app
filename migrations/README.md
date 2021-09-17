@@ -1,0 +1,1 @@
+This is the migrations folder, here live the migrations to keep the database up to date.

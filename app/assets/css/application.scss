@@ -1,0 +1,77 @@
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+// This is just some CSS for the welcome home landing page, feel free to 
+// remove it.
+body{
+    background-color: #EFF1F2;
+}
+a:hover{
+    text-decoration: none;
+}
+
+.color-one{
+    background-color: #73C2DA;
+}
+.color-one-text{
+    color:#73C2DA ;
+}
+.color-two{
+    background-color: #1D4564;
+}
+.title-task{
+    color: #1D4564;
+}
+
+.text-task{
+    color: #73C2DA;
+    font-weight: bold;
+    text-align: center;
+}
+.text-task,#check-input,#edit,#remove:hover{
+    cursor: pointer;
+}
+.grid-form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+}
+.b-left{
+    border-left: #EFF1F2 solid 1px;
+}
+.delete:hover{
+    cursor: pointer;
+    color: green;
+}
+#update-task:hover,#new-task:hover{
+    background-color: #4594ac;
+}
+.container-addTask{
+    height: 86.6px;
+}
+#svg{
+    display: none;
+}
+.w-card{
+    width: 18rem;
+}
+.color-name{
+    color: #73C2DA;
+}
+.logo{
+    color: #1D4564;
+     font-weight: 500;
+    
+}
+.logo:hover{
+    color: #1D4564
+}
+.centered{
+    top:50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+
+

@@ -1,0 +1,10 @@
+create_table("tasks") {
+  t.Column("id", "uuid", {primary: true})
+  t.Column("title", "string", {})
+  t.Column("limit_data", "timestamp", {})
+  t.Column("description", "text", {})
+  t.Column("check_complet", "bool", {})
+  t.Column("priority", "string", {})
+  t.Column("user_id", "uuid", {})
+  t.Timestamps()
+}

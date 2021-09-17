@@ -1,0 +1,37 @@
+<nav class="nav color-one pt-4 pb-3">
+    <div class="container w-50 d-flex">
+      <h1 class="text-light h1 px-3 mr-4">
+        <a class="text-white" href="/tasks">ToDo List</a>
+      </h1>
+      <div
+        class="h-75 my-auto px-4 b-left d-flex flex-column justify-content-center"
+      >
+        <div>
+          <p class="text-light my-auto ">
+            <span><%= ntasks %></span>  Incomplete Tasks
+          </p>
+        </div>
+        <div>
+          <p class="mb-0 py-0 text-white " > <%= Date %></p>
+        </div>
+      </div>
+    </div>
+    <div class="container w-50 d-flex justify-content-end"> 
+      <%= if (current_user.Rol == "admin") { %>
+        <a 
+        class="nav-link text-light"
+        href="/user/list"
+        >Users</a
+      > <% } %>
+      <a id="incomplete" class="nav-link text-light  <%= status(params["check_complet"],"true")%>" href="/tasks/?check_complet=false"
+        >Incomplete Tasks 
+      </a>
+      <a id="completed"
+        class="nav-link text-light <%= status(params["check_complet"],"false")%>"
+        href="/tasks/?check_complet=true"
+        >Completed Tasks</a
+      >
+      <!-- <%= linkTo(signoutPath(), {data-method: "DELETE"}){ %>Sign Out<% } %> -->
+      <a href="<%= signoutPath() %>" data-method="DELETE" class="nav-link text-light"> Sign Out </a>
+    </div>
+  </nav>

@@ -1,0 +1,5 @@
+add_foreign_key("tasks", "user_id", {"users": ["id"]}, {
+    "name": "tasks_users_id_fk",
+    "on_delete": "CASCADE",
+    "on_update": "CASCADE",
+})

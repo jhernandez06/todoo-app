@@ -1,0 +1,12 @@
+<div class="card w-50 centered p-5 rounded">
+    <h3>Recover account using your email.</h3>
+    <%= form_for(user, {action: userFindAccountPath(), method: "POST", class: "form"}) { %>
+    <%= f.InputTag("Email",{placeholder:"Email", label:""}) %>
+    <div class="mt-4 d-flex justify-content-between">
+        <div>
+            <a href="/" id="cancel" class="btn btn-light py-2 px-3 mr-3 text-dark" >Cancel</a>
+            <button  class="btn color-one py-2 px-3 text-white" type="submit">Recover account</button>
+        </div>  
+    </div>
+    <% } %>
+</div>

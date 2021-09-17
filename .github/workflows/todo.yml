@@ -1,0 +1,12 @@
+  on: push  
+  name: ejecutar milo al hacer push
+  jobs: 
+    tests:
+      runs-on: ubuntu-latest
+      steps:
+        - name: clonar y hacer checkout de la rama actual
+          uses: actions/checkout@v2
+        - name: instalar milo
+          run: curl -sf https://gobinaries.com/wawandco/milo/cmd/milo | sh
+        - name: ejecutar milo
+          run: milo review app/templates/

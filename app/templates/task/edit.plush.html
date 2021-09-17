@@ -1,0 +1,21 @@
+<%= partial("partials/navbar.plush.html") %>
+<section id="new-task" class="container px-5 w-75 bg-white mt-5 p-5 ">
+    <h3 class="fw-bolder mb-3">Edit Task</h3>
+<%= form_for(task, {action: tasksUpdateTaskIDPath({task_id: task.ID}), method: "PUT", class: "form"}) { %>
+    <div class="mb-3 grid-form">
+        <%= f.InputTag("Title") %>
+        <%= f.InputTag("LimitData", {type: "datetime-local", min: "2021-01-02T00:00", value: task.LimitData.Format("2006-01-02T15:04") }) %> 
+    </div>
+    <%= f.TextArea("Description") %>
+    <div class="mb-3 grid-form">
+        <%= f.SelectTag("Priority", {label:"Select a priority", options: {"High priority": "a", "Moderate priority": "b", "Low priority": "c"} }) %>
+        <%= if (current_user.Rol == "admin") { %>
+        <%= f.SelectTag("UserID", {label:"Select a User", options: usersList }) %>
+        <% } %>
+    </div>
+    <div class="mt-4 d-flex justify-content-end">
+        <a href="/tasks"> <button id="cancel" class="btn btn-light py-2 px-3 mx-3 text-dark" type="button">Cancel</button></a>
+        <button data-method="PUT" data-confirm="Are you sure you want to update this task?" id="update-task" class="btn color-one py-2 px-3 text-white" type="submit">Edit Task</button>
+      </div>
+<% } %>
+</section>
