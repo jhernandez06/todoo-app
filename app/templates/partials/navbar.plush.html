@@ -1,37 +1,43 @@
-<nav class="nav color-one pt-4 pb-3">
-    <div class="container w-50 d-flex">
-      <h1 class="text-light h1 px-3 mr-4">
-        <a class="text-white" href="/tasks">ToDo List</a>
-      </h1>
-      <div
-        class="h-75 my-auto px-4 b-left d-flex flex-column justify-content-center"
-      >
-        <div>
-          <p class="text-light my-auto ">
-            <span><%= ntasks %></span>  Incomplete Tasks
-          </p>
-        </div>
-        <div>
-          <p class="mb-0 py-0 text-white " > <%= Date %></p>
-        </div>
+<nav class="nav color-one pt-4 pb-4">
+      <div  class=" h-75 my-auto container w-50 d-flex">
+          <h1  id="logo-lg" class="text-light h1 px-3 mr-4">
+            <a class="text-white" href="/tasks">ToDo List</a>
+          </h1>
+          <div class="h-75 my-auto px-3 b-left d-flex flex-column justify-content-center">
+            <div>
+              <p class="text-light my-auto date">
+                <span><%= ntasks %></span>  Incomplete Tasks
+              </p>
+            </div>
+            <div>
+              <p class="mb-0 py-0 text-white date " > <%= Date %></p>
+            </div>
+          </div>
       </div>
-    </div>
-    <div class="container w-50 d-flex justify-content-end"> 
-      <%= if (current_user.Rol == "admin") { %>
-        <a 
-        class="nav-link text-light"
-        href="/user/list"
-        >Users</a
-      > <% } %>
-      <a id="incomplete" class="nav-link text-light  <%= status(params["check_complet"],"true")%>" href="/tasks/?check_complet=false"
-        >Incomplete Tasks 
-      </a>
-      <a id="completed"
-        class="nav-link text-light <%= status(params["check_complet"],"false")%>"
-        href="/tasks/?check_complet=true"
-        >Completed Tasks</a
-      >
-      <!-- <%= linkTo(signoutPath(), {data-method: "DELETE"}){ %>Sign Out<% } %> -->
-      <a href="<%= signoutPath() %>" data-method="DELETE" class="nav-link text-light"> Sign Out </a>
-    </div>
+      <div class="container-fluid w-50 navbar navbar-expand-lg navbar-light d-flex justify-content-around"> 
+        <h1  id="logo-md" class="text-light h4 pt-2">
+          <a class="text-white" href="/tasks">ToDo List</a>
+        </h1>
+        <button class="navbar-toggler border-0 " type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="collapse navbar-collapse text-end mx-sm-5 " id="navbarTogglerDemo02">
+        <a class="nav-link text-light d-none current-user " href="/user/show/<%= current_user.ID %>"
+          ><%= current_user.FirstName +" "+ current_user.LastName %></a>
+        <%= if (current_user.Rol == "admin") { %>
+          <a
+          class="nav-link text-light"
+          href="/user/list"
+          >Users</a
+        > <% } %>
+        <a id="incomplete" class="nav-link text-light  <%= status(params["check_complet"],"true")%>" href="/tasks/?check_complet=false"
+          >Incomplete Tasks
+        </a>
+        <a id="completed"
+          class="nav-link text-light <%= status(params["check_complet"],"false")%>"
+          href="/tasks/?check_complet=true">
+          Completed Tasks</a>
+        <a href="<%= signoutPath() %>" data-method="DELETE" class="nav-link text-light"> Sign Out </a>
+      </div>
+      </div>
   </nav>

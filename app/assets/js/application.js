@@ -16,14 +16,14 @@ $(() => {
     document.getElementById("deleteuser").innerHTML = deleteBtn;
   });
   //animation
-  $(".check").on("mouseenter", aumentarText);
-  $(".check").on("mouseleave", disminuirText);
-  function aumentarText() {
-    $(this).animate({ fontSize: "17px" }, 100);
-  }
-  function disminuirText() {
-    $(this).animate({ fontSize: "16px" }, 100);
-  }
+  // $(".check").on("mouseenter", aumentarText);
+  // $(".check").on("mouseleave", disminuirText);
+  // function aumentarText() {
+  //   $(this).animate({ fontSize: "17px" }, 100);
+  // }
+  // function disminuirText() {
+  //   $(this).animate({ fontSize: "16px" }, 100);
+  // }
   $(function () {
     $('[data-toggle="tooltip"]').tooltip();
   });

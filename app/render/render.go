@@ -33,6 +33,7 @@ var Helpers = map[string]interface{}{
 	"byCompleted":   Completed,
 	"priority":      Priority,
 	"equalsID":      EqualsID,
+	"title":         TitleTask,
 }
 
 func Status(completed bool, date time.Time, dateUpdate time.Time) string {
@@ -93,12 +94,17 @@ func Priority(priority string) string {
 }
 
 func EqualsID(u1 uuid.UUID, u2 uuid.UUID) bool {
-
 	if u1 == u2 {
-
 		return true
 	}
-
 	return false
+}
 
+func TitleTask(title string) string {
+	var newTitle string
+	if len(title) > 25 {
+		newTitle = fmt.Sprint(title[0:25] + "...")
+		return newTitle
+	}
+	return title
 }

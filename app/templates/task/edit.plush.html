@@ -1,8 +1,8 @@
 <%= partial("partials/navbar.plush.html") %>
-<section id="new-task" class="container px-5 w-75 bg-white mt-5 p-5 ">
+<section id="new-task" class="container px-5 w-sm-100 w-md-75 bg-white mt-sm-5 p-5 ">
     <h3 class="fw-bolder mb-3">Edit Task</h3>
 <%= form_for(task, {action: tasksUpdateTaskIDPath({task_id: task.ID}), method: "PUT", class: "form"}) { %>
-    <div class="mb-3 grid-form">
+    <div class="mb-3 g-form">
         <%= f.InputTag("Title") %>
         <%= f.InputTag("LimitData", {type: "datetime-local", min: "2021-01-02T00:00", value: task.LimitData.Format("2006-01-02T15:04") }) %> 
     </div>

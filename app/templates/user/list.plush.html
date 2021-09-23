@@ -1,25 +1,7 @@
 <%= partial("partials/navbar.plush.html") %>
 <%= partial("partials/flash.plush.html") %>
-<section id="tasks" class="container px-5 mx-auto">
-  <div class="d-flex justify-content-between container-addTask">
-    <h3 class="my-auto">
-      <a class="nav-link title-task"
-        href="/user/show/<%= current_user.ID %>"><%= current_user.FirstName +" "+ current_user.LastName %>
-      </a>
-    </h3>
-    <div class="d-flex justify-content-end py-4">
-      <%= if (current_user.Rol == "admin" ) {%>
-        <a href="/user/newByAdmin" type="button" class="btn color-one <%= addTask(params["check_complet"])%> ">
-          <span class="py-2 px-4 text-white">Add User
-            <i class="far fa-user ml-3"></i>
-          </span>
-      <% } %>
-      </a>
-      <a href="/tasks/new" id="add-task" type="button" class="btn color-one ml-3 <%= addTask(params["check_complet"])%> ">
-        <span class="py-2 px-4 text-white"><i class="fas fa-tasks mr-3"></i>Add Task</span>
-      </a>
-    </div>
-  </div>
+<section id="tasks" class="container-fluid px-md-5 ">
+  <%= partial("partials/add-task-user.plush.html") %>
   <div>
     <table class="table table-hover">
       <thead class="table color-two">
@@ -33,21 +15,21 @@
       <tbody class="bg-white">
         <%= for (user) in users { %>
         <tr>
-          <td>
+          <td data-label="Status-User" scope="row">
             <div class="form-check text-center">
               <%= form_for(user, {action: userActiveUserIDPath({user_id: user.ID}), method: "PUT", class: "form"}) { %>
               <%= if (user.StatusUser == "invited") { %>
-              <a><button type="submit" data-method="PUT" class="btn my-0 py-0 check text-success" data-toggle="tooltip"
+              <a><button type="submit" data-method="PUT" class="btn-status my-0 py-0 check text-success" data-toggle="tooltip"
                   data-placement="left" title="invited user">
                   <i class="fas fa-blind"></i>
                 </button></a>
               <% } else if (user.StatusUser == "activated") { %>
-              <a><button type="submit" data-method="PUT" class="btn my-0 py-0 check" data-toggle="tooltip"
+              <a class="p-0 m-0"><button type="submit" data-method="PUT" class="btn-status my-0 py-0 check" data-toggle="tooltip"
                   data-placement="left" title="Disable this user">
                   <i class="fas fa-user-alt"></i>
                 </button></a>
               <% } else if (user.StatusUser == "disabled") { %>
-              <button type="submit" data-method="PUT" class="btn my-0 py-0 text-danger check" data-toggle="tooltip"
+              <button type="submit" data-method="PUT" class="btn-status my-0 py-0 text-danger check" data-toggle="tooltip"
                 data-placement="left" title="Enable this user">
                 <i class="fas fa-user-slash"></i>
               </button>
@@ -55,17 +37,17 @@
               <% } %>
             </div>
           </td>
-          <td>
+          <td data-label="<%= user.Rol %>" scope="row">
             <span><a class="text-task " href="/user/show/<%= user.ID %>"><%= user.FirstName %> <%= user.LastName %>
               </a></span>
           </td>
-          <td><%= user.Email %></td>
-          <td class="py-2">
+          <td data-label="Email" scope="row"><%= user.Email %></td>
+          <td data-label="Actions" scope="row">
             <div class="text-center">
               <a href="/user/edit/<%= user.ID %>">
-                <i id="edit" class="fas fa-pencil-alt text-dark  fa-lg"></i></a>
-              <a class="btn" id="btn-delete" data-id="<%= user.ID %>" data-toggle="modal" data-target="#staticBackdrop">
-                <i id="destroy" class="far fa-trash-alt text-danger fa-lg"></i>
+                <i id="edit" class="fas fa-pencil-alt text-dark mr-3"></i></a>
+              <a id="btn-delete" data-id="<%= user.ID %>" data-toggle="modal" data-target="#staticBackdrop">
+                <i id="destroy" class="far fa-trash-alt text-danger"></i>
               </a>
             </div>
           </td>

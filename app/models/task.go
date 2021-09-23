@@ -107,8 +107,7 @@ type UserIDNotValid struct {
 }
 
 func (v *UserIDNotValid) IsValid(errors *validate.Errors) {
-	id := IsValidUUID(v.Field.String())
-	fmt.Println("--------------------> ID", id)
+	//id := IsValidUUID(v.Field.String())
 	fmt.Println(len(v.Field.String()))
 	// if id {
 	// 	errors.Add(validators.GenerateKey(v.Name), "ID not valid!")

@@ -1,13 +1,13 @@
 package actions
 
 import (
+	"fmt"
 	"net/http"
 	"todoo/app/models"
 
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop/v5"
 	"github.com/gofrs/uuid"
-	"github.com/pkg/errors"
 )
 
 func TasksList(c buffalo.Context) error {
@@ -83,10 +83,13 @@ func CreateTask(c buffalo.Context) error {
 			}
 			UsersList = append(UsersList, oneUser)
 		}
-
+		fmt.Println("-----------------------------> antes de Bind")
 		if err := c.Bind(&task); err != nil {
-			return errors.WithStack(err)
+			fmt.Println("-----------------------------> error de Bind")
+			//return errors.WithStack(err)
+			return err
 		}
+		fmt.Println("-----------------------------> despues de Bind")
 		verrs := task.Validate(tx)
 		if verrs.HasAny() {
 			c.Set("errors", verrs)

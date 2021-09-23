@@ -1,31 +1,12 @@
 <%= partial("partials/navbar.plush.html") %>
 <%= partial("partials/flash.plush.html") %>
-<section id="tasks" class="container px-5 mx-auto">
-  <div class="d-flex justify-content-between container-addTask">
-    <h3 class="my-auto"> 
-      <a class="nav-link title-task" href="/user/show/{<%= current_user.ID %>}"
-      ><%= current_user.FirstName +" "+ current_user.LastName %></a
-    ></h3>
-    <div class="d-flex justify-content-end py-4"  >
-      <%= if (current_user.Rol == "admin" ) {%>
-      <a href="/user/newByAdmin" type="button" class="btn color-one <%= addTask(params["check_complet"])%> ">
-        <span class="py-2 px-4 text-white"
-          >Add User<i class="far fa-user ml-3"></i></span
-        ><% } %>
-      </a>
-      <a href="/tasks/new" id="add-task" type="button" class="btn color-one ml-3 <%= addTask(params["check_complet"])%> ">
-        <span class="py-2 px-4 text-white"
-          ><i class="fas fa-tasks mr-3"></i>Add Task</span>
-      </a>
-    </div>
-  </div>
-  
-  
+<section id="tasks" class="container-fluid  px-md-5 ">
+ <%= partial("partials/add-task-user.plush.html") %>
     <table class="table table-hover">
       <thead class="table color-two">
         <tr class="text-light">
           <th scope="col " class="col-1"></th>
-          <th scope="col" class="col-5">Task</th>
+          <th scope="col" class="col-6">Task</th>
           <th scope="col">Complete<%= byCompleted(params["check_complet"])%> by</th>
           <th class="text-center" scope="col">Actions</th>
         </tr>
@@ -33,42 +14,41 @@
       <tbody class="bg-white">
         <%= for (task) in tasks { %>
         <tr>
-          <th scope="row">
+          <td data-label="Status" scope="row">
             <div class="form-check text-center">
               <%= form_for(task, {action: tasksUpdateCheckTaskIDPath({task_id:
               task.ID}), method: "PUT", class: "form"}) { %> 
                 <%= if (!task.CheckComplet) { %>
-              <a ><button type="submit" data-method="PUT" class="btn my-0 py-0 check" >
-                <i class="far fa-check-circle"></i>
-              </button></a>
+              <button type="submit" data-method="PUT" class="btn p-0 m-0" >
+                <i class="far fa-check-circle "></i>
+              </button>
               <% } else if (task.CheckComplet) { %>
-              <button type="submit" data-method="PUT" class="btn my-0 py-0 text-danger check">
+              <button type="submit" data-method="PUT" class="btn p-0 m-0 text-danger check">
                 <i class="far fa-times-circle"></i>
               </button>
               <% } %> <% } %>
             </div>
-          </th>
-          <td>
+          </td>
+          <td data-label="Title" scope="row">
             <span
               ><a class="text-task" href="/tasks/show/<%= task.ID %>"
-                ><%= task.Title %> <span class="text-<%= priority(task.Priority)%> "><i class="fas fa-flag"></i></span></a
-              ></span
-            >
+                ><%= title(task.Title) %> <span class="text-<%= priority(task.Priority)%> "><i class="fas fa-flag"></i></span></a
+              ></span>
           </td>
-          <td><%= task.LimitData.Format("02 Jan 2006") %></td>
-          <td>
+          <td data-label="Complete<%= byCompleted(params["check_complet"])%>  by" scope="row"><%= task.LimitData.Format("02 Jan 2006") %></td>
+          <td data-label="Actions" scope="row">
             <%= if (!task.CheckComplet) { %>
               <div class="text-center">
                 <a href="/tasks/edit/<%= task.ID %>"
-                  ><i id="edit" class="fas fa-pencil-alt text-dark mr-3 fa-lg"></i
+                  ><i id="edit" class="fas fa-pencil-alt text-dark mr-3"></i
                 ></a>
-                <a 
+                <a
                   class="delete"
                   id="callDelete"
                   data-id="<%= task.ID %>"
                   data-toggle="modal"
                   data-target="#delete"
-                  ><i id="destroy" class="far fa-trash-alt text-danger fa-lg"></i></a>
+                  ><i id="destroy" class="far fa-trash-alt text-danger"></i></a>
               </div>
           </td>
           <% } else if (task.CheckComplet) { %>

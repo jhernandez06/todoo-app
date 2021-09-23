@@ -1,7 +1,7 @@
 <%= partial("partials/navbar.plush.html") %>
-<div class="jumbotron mt-5 container w-75">
+<div class="jumbotron mt-5 container-fluid">
     <div class="d-flex justify-content-between">
-        <h1 class="display-3 title-task"><%= task.Title %></h1>
+        <h2 class=" display-4 title-task"><%= task.Title %></h2>
         <p class="lead text-muted"> <%= user.FirstName %> <%= user.LastName %></p>
     </div>
     <div class="d-flex justify-content-end">
@@ -9,16 +9,14 @@
     </div>
     <p class="lead"><%= task.Description %></p>
     <hr class="my-4">
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-end">
         <div >
-            <a class="btn btn-light py-2 px-4 btn-lg text-dark" href="/tasks/" role="button">Back</a>
-
+            <a class="btn btn-light py-sm-2 px-sm-4 mr-3 text-dark" href="/tasks/" role="button"><span>Back</span></a>
         </div>
         <%= if (!task.CheckComplet) { %>
             <div>
-                <a class="btn btn-primary btn-lg px-4" href="/tasks/edit/<%= task.ID %>" role="button">Edit</a>
+                <a class="btn btn-primary py-sm-2 px-sm-4" href="/tasks/edit/<%= task.ID %>" role="button"><span>Edit</span></a>
             </div>
-            <% }  %>
+        <% }  %>
     </div>
-
-  </div>
+</div>

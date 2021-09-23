@@ -1,10 +1,8 @@
 <%= partial("partials/navbar.plush.html") %>
-
-<section id="new-task" class="container px-5 w-75 bg-white mt-5 p-5 ">
+<section id="new-task" class="container w-sm-100 w-md-75  bg-white mt-sm-5 p-5 rounded-lg ">
     <h3 class="fw-bolder mb-3">New Task</h3>
-     
 <%= form_for(task, {action: tasksCreatePath(), method: "POST", class: "form"}) { %>
-    <div class="mb-3 grid-form">
+    <div class="mb-3 g-form">
         <%= f.InputTag("Title") %>
         <%= f.InputTag("LimitData", {type: "datetime-local", min: "2021-01-02T00:00", value: Date1.Format("2006-01-02 15:04")}) %> 
     </div>
@@ -15,7 +13,6 @@
         <%= f.SelectTag("UserID", {label:"Select a User", options: usersList }) %>
         <% } %>
     </div>
-   
     <div class="mt-4 d-flex justify-content-end">
         <a href="/tasks/"> <button id="cancel" class="btn btn-light py-2 px-3 mx-3 text-dark" type="button">Cancel</button></a>
         <button  class="btn color-one py-2 px-3 text-white" type="submit">Create Task</button>
